@@ -17,7 +17,7 @@
           <div class="shadow rounded border bg-gray-100  p-4 m-2 w-92 h-auto">
             {{ pais.nombre }}- {{ pais.score }}
             <img class="w-96 rounded-t" v-bind:src="pais.foto" />
-<div class="bg-cyan-300 rounded-b">
+<div class="bg-green-300 rounded-b">
             <div class="grid grid-cols-5 mx-16 " >
 
 <img  v-if="pais.estrellas[pais.puntuacion[0]] == true"  @click="pointStart(index,pais.puntuacion[0])"  class="h-4 m-1"   :src="pais.starfull">
