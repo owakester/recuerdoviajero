@@ -2,74 +2,83 @@
   <div>
     <p>hola mundo</p>
     <label for="">Pais nuevo </label>
-    <input v-model="datoin" class="bg-gray-100 rounded text-gray-900" type="text" placeholder="Ingresa nombre del pais" />
+    <input
+      v-model="datoin"
+      class="bg-gray-100 rounded text-gray-900"
+      type="text"
+      placeholder="Ingresa nombre del pais"
+    />
 
     <label for="">imagen </label>
-    <input v-model="imagein" class="bg-gray-100 rounded text-gray-900" type="text" placeholder="copia el link" />
+    <input
+      v-model="imagein"
+      class="bg-gray-100 rounded text-gray-900"
+      type="text"
+      placeholder="copia el link"
+    />
 
     <button @click="sortCountries" class="bg-green-400 rounded mx-2 p-2">
       agregar
     </button>
-<h2 class="text-center text-3xl text-cyan-600 font-mono">Viajeros del Mes</h2>
+    <h2 class="text-center text-3xl text-cyan-600 font-mono">
+      Viajeros del Mes
+    </h2>
     <div class="m-2 grid grid-cols-5 gap-4">
       <ul v-for="(pais, index) in paises" :key="pais.id">
         <li>
-          <div class="shadow rounded border bg-gray-100  p-4 m-2 w-92 h-auto">
-            {{ pais.nombre }}- {{ pais.score }}
-            <img class="w-96 rounded-t" v-bind:src="pais.foto" />
-<div class="bg-green-300 rounded-b">
-            <div class="grid grid-cols-5 mx-16 " >
-
-<img  v-if="pais.estrellas[pais.puntuacion[0]] == true"  @click="pointStart(index,pais.puntuacion[0])"  class="h-4 m-1"   :src="pais.starfull">
-<img  @click="pointStart(index,pais.puntuacion[0])"  class="h-4 m-1"  v-else  :src="pais.starempty" alt="">
-      
-    
-<img  v-if="pais.estrellas[pais.puntuacion[1]] == true"  @click="pointStart(index,pais.puntuacion[1])"  class="h-4 m-1"   :src="pais.starfull">
-<img  @click="pointStart(index,pais.puntuacion[1])"  class="h-4 m-1"  v-else  :src="pais.starempty" alt="">
-
-
-<img  v-if="pais.estrellas[pais.puntuacion[2]] == true"  @click="pointStart(index,pais.puntuacion[2])"  class="h-4 m-1"   :src="pais.starfull">
-<img  @click="pointStart(index,pais.puntuacion[2])"  class="h-4 m-1"  v-else  :src="pais.starempty" alt="">
-
-
-<img  v-if="pais.estrellas[pais.puntuacion[3]] == true"  @click="pointStart(index,pais.puntuacion[3])"  class="h-4 m-1"   :src="pais.starfull">
-<img  @click="pointStart(index,pais.puntuacion[3])"  class="h-4 m-1"  v-else  :src="pais.starempty" alt="">
-
-
-<img  v-if="pais.estrellas[pais.puntuacion[4]] == true"  @click="pointStart(index,pais.puntuacion[4])"  class="h-4 m-1"   :src="pais.starfull">
-<img  @click="pointStart(index,pais.puntuacion[4])"  class="h-4 m-1"  v-else  :src="pais.starempty" alt="">
+          <div class="shadow rounded border bg-gray-100 p-4 m-2 w-92 h-auto">
+            <div class="grid grid-cols-3">
+              <span class=""><img class="h-10 " :src="pais.bandera" alt="" /></span>
+              <span class="bg-green-400 text-center text-2xl w-8 h-8 px-1 rounded m-1">{{ pais.score }}</span>
+              <span class="text-green-800"> {{ pais.name }}</span>
+            </div>
            
-</div>
-</div>
-       
+           
+
+
+            <img class="w-96 rounded-t my-2" v-bind:src="pais.foto" />
+            <div class="bg-green-300 rounded-b">
+              <div class="grid grid-cols-6 mx-16">
+                <button
+                @click="moreCount(index)"
+                class="m-1 bg-green-700 text-gray-100 rounded px-1"
+              >
+                +
+              </button>
+                <img  v-if="pais.estrellas[pais.puntuacion[0]] == true"  @click="pointStart(index,pais.puntuacion[0])"  class="h-4 m-1"   :src="pais.starfull">
+                <img  @click="pointStart(index,pais.puntuacion[0])"  class="h-4 m-1"  v-else  :src="pais.starempty" alt="">
+                      
+                    
+                <img  v-if="pais.estrellas[pais.puntuacion[1]] == true"  @click="pointStart(index,pais.puntuacion[1])"  class="h-4 m-1"   :src="pais.starfull">
+                <img  @click="pointStart(index,pais.puntuacion[1])"  class="h-4 m-1"  v-else  :src="pais.starempty" alt="">
+
+
+                <img  v-if="pais.estrellas[pais.puntuacion[2]] == true"  @click="pointStart(index,pais.puntuacion[2])"  class="h-4 m-1"   :src="pais.starfull">
+                <img  @click="pointStart(index,pais.puntuacion[2])"  class="h-4 m-1"  v-else  :src="pais.starempty" alt="">
+
+
+                <img  v-if="pais.estrellas[pais.puntuacion[3]] == true"  @click="pointStart(index,pais.puntuacion[3])"  class="h-4 m-1"   :src="pais.starfull">
+                <img  @click="pointStart(index,pais.puntuacion[3])"  class="h-4 m-1"  v-else  :src="pais.starempty" alt="">
+
+
+                <img  v-if="pais.estrellas[pais.puntuacion[4]] == true"  @click="pointStart(index,pais.puntuacion[4])"  class="h-4 m-1"   :src="pais.starfull">
+                <img  @click="pointStart(index,pais.puntuacion[4])"  class="h-4 m-1"  v-else  :src="pais.starempty" alt="">
+              </div>
+
               
+            </div>
 
+            <div>
+              <!--                 <p v-for="puntuacion in paises.estrellas" :key="puntuacion.id">sd{{puntuacion}}</p>
+ -->
+            </div>
 
-
-          
-
-      
-             
-              <div>
-<!--                 <p v-for="puntuacion in paises.estrellas" :key="puntuacion.id">sd{{puntuacion}}</p>
- -->               </div> 
-              
-         <!--      <PointUser v-bind:comment-ids="[234, 266, 273]"></PointUser>
+            <!--      <PointUser v-bind:comment-ids="[234, 266, 273]"></PointUser>
 
               <PointUser :likes="pais.puntuacion"></PointUser>
              -->
 
-       
-
-
-
-
-            <button
-              @click="moreCount(index)"
-              class="m-2 bg-red-300 rounded px-1"
-            >
-              +
-            </button>
+         
           </div>
         </li>
         <p>{{ name }}</p>
@@ -87,12 +96,13 @@ defineProps(["phoneNumber", "emailAddress"]);
 let datoin = ref("");
 let imagein = ref("");
 /* let points=[1,2,3,4,5]
- */let paises = ref([
+ */ let paises = ref([
   {
     id: 1,
-    nombre: "Colombia",
-    puntuacion:[0,1,2,3,4],
-    score:0,
+    bandera: "https://cdn-icons-png.flaticon.com/128/555/555617.png",
+    name: "Rodrigo perez",
+    puntuacion: [0, 1, 2, 3, 4],
+    score: 0,
     foto: "images/1.jpg",
     like: false,
     starempty: "images/starempty.png",
@@ -101,9 +111,10 @@ let imagein = ref("");
   },
   {
     id: 2,
-    nombre: "Brazil",
-    puntuacion:[0,1,2,3,4],
-    score:0,
+    bandera: "https://cdn-icons-png.flaticon.com/128/330/330430.png",
+    name: "Cintia Espinoza",
+    puntuacion: [0, 1, 2, 3, 4],
+    score: 0,
     foto: "images/2.jpg",
     like: false,
     starempty: "images/starempty.png",
@@ -112,10 +123,11 @@ let imagein = ref("");
   },
   {
     id: 3,
-    nombre: "Mexico",
-    puntuacion:[0,1,2,3,4],
-    score:0,
-        foto: "images/3.jpg",
+    bandera: "https://cdn-icons-png.flaticon.com/128/630/630615.png",
+    name: "Tatiana Rodriguez",
+    puntuacion: [0, 1, 2, 3, 4],
+    score: 0,
+    foto: "images/3.jpg",
     like: false,
     starempty: "images/starempty.png",
     starfull: "images/starfull.png",
@@ -123,9 +135,10 @@ let imagein = ref("");
   },
   {
     id: 4,
-    nombre: "Salvador",
-    puntuacion:[0,1,2,3,4],
-    score:0,
+    bandera: "https://cdn-icons-png.flaticon.com/128/3371/3371965.png",
+    name: "Santiago Sambrano",
+    puntuacion: [0, 1, 2, 3, 4],
+    score: 0,
     foto: "images/4.jpg",
     like: false,
     starempty: "images/starempty.png",
@@ -134,9 +147,10 @@ let imagein = ref("");
   },
   {
     id: 5,
-    nombre: "Peru",
-    puntuacion:[0,1,2,3,4],
-    score:0,
+    bandera: "https://cdn-icons-png.flaticon.com/128/555/555605.png",
+    name: "Mijeong Kim",
+    puntuacion: [0, 1, 2, 3, 4],
+    score: 0,
     foto: "images/5.jpg",
     like: false,
     starempty: "images/starempty.png",
@@ -149,8 +163,8 @@ const sortCountries = () => {
   paises.value.push({
     id: 5,
     nombre: datoin.value,
-    puntuacion: [0,1,2,3,4],
-    score:0,
+    puntuacion: [0, 1, 2, 3, 4],
+    score: 0,
     foto: imagein.value,
     like: false,
     starempty: "images/starempty.png",
@@ -164,31 +178,25 @@ const moreCount = (points) => {
   console.log(paises.value.sort((a, b) => a.score - b.score));
 };
 
-const pointStart = (valor,numstar) => {
-console.log(numstar)
+const pointStart = (valor, numstar) => {
+  console.log(numstar);
   if (paises.value[valor].estrellas[numstar] == false) {
     paises.value[valor].estrellas[numstar] = !false;
-    
-   for (let i=0 ; i < numstar ; i++) {
-     console.log(i)
-     
-     let seleccion= paises.value[valor].estrellas[i] = true;
-     console.log(seleccion)
-   }
 
+    for (let i = 0; i < numstar; i++) {
+      console.log(i);
 
-   
-
-
+      let seleccion = (paises.value[valor].estrellas[i] = true);
+      console.log(seleccion);
+    }
   } else {
     paises.value[valor].estrellas[numstar] = false;
-    for (let i=0 ; i < paises.value.length ; i++) {
-     console.log(i)
-     
-     let seleccion= paises.value[valor].estrellas[i] = false;
-     console.log(seleccion)
-   }
+    for (let i = 0; i < paises.value.length; i++) {
+      console.log(i);
 
+      let seleccion = (paises.value[valor].estrellas[i] = false);
+      console.log(seleccion);
+    }
   }
 };
 </script>
