@@ -41,7 +41,7 @@
               <div class="grid grid-cols-6 mx-16">
                 <button
                 @click="moreCount(index)"
-                class="m-1 bg-green-700 text-gray-100 rounded px-1"
+                class="m-1 bg-green-700 text-gray-100 rounded  "
               >
                 +
               </button>
