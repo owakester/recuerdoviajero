@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <p>hola mundo</p>
+  <div class="mt-2">
+   
     <label for="">Pais nuevo </label>
     <input
       v-model="datoin"
@@ -175,24 +175,30 @@ const sortCountries = () => {
 
 const moreCount = (points) => {
   paises.value[points].score++;
+
+setTimeout(() => {
+
   console.log(paises.value.sort((a, b) => a.score - b.score));
+}, 2000);
+
+
+
 };
 
 const pointStart = (valor, numstar) => {
-  console.log(numstar);
   if (paises.value[valor].estrellas[numstar] == false) {
     paises.value[valor].estrellas[numstar] = !false;
 
     for (let i = 0; i < numstar; i++) {
-      console.log(i);
 
       let seleccion = (paises.value[valor].estrellas[i] = true);
       console.log(seleccion);
+
     }
   } else {
     paises.value[valor].estrellas[numstar] = false;
     for (let i = 0; i < paises.value.length; i++) {
-      console.log(i);
+ 
 
       let seleccion = (paises.value[valor].estrellas[i] = false);
       console.log(seleccion);
