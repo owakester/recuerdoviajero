@@ -34,10 +34,8 @@
             </div>
            
            
-
-
             <img class="w-96 rounded-t my-2" v-bind:src="pais.foto" />
-            <div class="bg-green-300 rounded-b">
+            <div class="bg-gray-200 rounded-b">
               <div class="grid grid-cols-6 mx-16">
                 <button
                 @click="moreCount(index)"
@@ -65,7 +63,12 @@
                 <img  @click="pointStart(index,pais.puntuacion[4])"  class="h-4 m-1"  v-else  :src="pais.starempty" alt="">
               </div>
 
+            
+              <button @click="readMore(index)" class="bg-green-400 rounded p-1 m-1">Leer mas</button>
+              <div class="p-2" v-if="pais.like==true" >
               
+                <PostComment :comment="pais.note"></PostComment>
+            </div>
             </div>
 
             <div>
@@ -89,6 +92,7 @@
 
 <script setup>
 import { ref, defineProps } from "vue";
+import PostComment from "./PostComment.vue";
 /* import PointUser from "./pointUser.vue";
  */
 defineProps(["phoneNumber", "emailAddress"]);
@@ -101,6 +105,7 @@ let imagein = ref("");
     id: 1,
     bandera: "https://cdn-icons-png.flaticon.com/128/555/555617.png",
     name: "Rodrigo perez",
+    note:"Amante de los viajes, apasionado por la naturaleza y la aventura",
     puntuacion: [0, 1, 2, 3, 4],
     score: 0,
     foto: "images/1.jpg",
@@ -113,6 +118,7 @@ let imagein = ref("");
     id: 2,
     bandera: "https://cdn-icons-png.flaticon.com/128/330/330430.png",
     name: "Cintia Espinoza",
+    note:"Amante de los viajes, apasionado por la naturaleza y la aventura",
     puntuacion: [0, 1, 2, 3, 4],
     score: 0,
     foto: "images/2.jpg",
@@ -125,6 +131,7 @@ let imagein = ref("");
     id: 3,
     bandera: "https://cdn-icons-png.flaticon.com/128/630/630615.png",
     name: "Tatiana Rodriguez",
+    note:"Amante de los viajes, apasionado por la naturaleza y la aventura",
     puntuacion: [0, 1, 2, 3, 4],
     score: 0,
     foto: "images/3.jpg",
@@ -137,6 +144,7 @@ let imagein = ref("");
     id: 4,
     bandera: "https://cdn-icons-png.flaticon.com/128/3371/3371965.png",
     name: "Santiago Sambrano",
+    note:"Amante de los viajes, apasionado por la naturaleza y la aventura",
     puntuacion: [0, 1, 2, 3, 4],
     score: 0,
     foto: "images/4.jpg",
@@ -149,6 +157,7 @@ let imagein = ref("");
     id: 5,
     bandera: "https://cdn-icons-png.flaticon.com/128/555/555605.png",
     name: "Mijeong Kim",
+    note:"Amante de los viajes, apasionado por la naturaleza y la aventura",
     puntuacion: [0, 1, 2, 3, 4],
     score: 0,
     foto: "images/5.jpg",
@@ -205,6 +214,13 @@ const pointStart = (valor, numstar) => {
     }
   }
 };
+
+//Despliega comentarios
+const readMore = (valor) => {
+  paises.value[valor].like=!paises.value[valor].like
+};
+
+
 </script>
 
 <style></style>
